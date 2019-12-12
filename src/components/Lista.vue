@@ -38,11 +38,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row">                      
+     
                         <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                          <input type="text" class="form-control search-slt" placeholder="Edad" id="edad" v-model="edad">
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                            <button type="button" class="btn btn-danger wrn-btn" @click="searchEdad">Buscar</button>
+                                  <input type="text" class="searchTerm" placeholder="Edad del alumno" id="edad" v-model="edad">
+                                  <button type="button" class="btn btn-primary" @click="searchEdad">Buscar</button>
+       
+     
                         </div>
                     </div>
                 </div>
