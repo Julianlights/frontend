@@ -79,7 +79,7 @@ export default {
 
 
 body{
-   background: url('http://img.netbian.com/file/2017/1207/5dd4b7e6b57c7e77c2354f782cfc2a74.jpg') no-repeat center center fixed;
+   background: url("assets/img/mountain.jpg") no-repeat center center fixed;
    background-size: cover;
 }
 
