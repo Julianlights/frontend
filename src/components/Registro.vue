@@ -184,7 +184,7 @@ body{
 
 </style>
 
-<<script>
+<script>
  import {API} from '../Servicios/axios.js'
 const header ={headers:{Authorization:`Token ${localStorage.getItem('token')}`}}
 export default {
