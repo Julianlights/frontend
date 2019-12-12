@@ -222,8 +222,7 @@ export default {
        },
        mostrarSeleccionado(){
          var combo = document.getElementById("combo").value;
-        //var selected = combo.options[combo.selectedIndex].text;
-            // eslint-disable-next-line no-console
+
         console.log(combo);
         this.carrera =combo
        },

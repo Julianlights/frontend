@@ -185,16 +185,9 @@ API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
         }
           },
         searchEdad(){   
-       this.alumnos=this.alumnos.filter((alumno) => alumno.edad.includes(this.edad));
-        if(this.edad==""){
-           API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
-            // eslint-disable-next-line no-console
-           // console.log(response)
-            this.alumnos = response.data
-              // eslint-disable-next-line no-console
-            console.log(this.alumnos)
-          })
-        }
+                  this.alumnos=this.alumnos.filter((alumno) => alumno.nombre.includes(this.nombre));
+           // eslint-disable-next-line no-console
+       console.log(this.alumnos)
   
         },
         searchCarrera(){
