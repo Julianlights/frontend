@@ -184,10 +184,9 @@ body{
 
 </style>
 
-<script>
+<<script>
  import {API} from '../Servicios/axios.js'
 const header ={headers:{Authorization:`Token ${localStorage.getItem('token')}`}}
-
 export default {
   created() {
           // eslint-disable-next-line no-console
@@ -222,7 +221,8 @@ export default {
        },
        mostrarSeleccionado(){
          var combo = document.getElementById("combo").value;
-
+        //var selected = combo.options[combo.selectedIndex].text;
+            // eslint-disable-next-line no-console
         console.log(combo);
         this.carrera =combo
        },
@@ -262,9 +262,7 @@ export default {
         },
         registroAlumno(){
           this.$router.push("/registro")
-        }
+        } 
     }
 }
-
-
 </script>
