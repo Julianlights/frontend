@@ -5,11 +5,11 @@
       <nav class="navbar navbar-dark bg-dark">
 
   <a class="navbar-brand" href="#"><i class="fas fa-dizzy"></i> BIENVENIDO</a>
-  <a class="navbar-brand" href="#"><i class="fas fa-list"></i> Lista de alumnos</a>
-   <a class="navbar-brand" href="#"><i class="fas fa-plus"></i> Agregar carrera</a>
-    <a class="navbar-brand" href="#"><i class="fas fa-user-plus"></i> Registrar alumno</a>
+  <a class="navbar-brand" @click="listaAlumnos"><i class="fas fa-list"></i> Lista de alumnos</a>
+   <a class="navbar-brand" @click="registroCarrera"><i class="fas fa-plus"></i> Agregar carrera</a>
+    <a class="navbar-brand" @click="registroAlumno"><i class="fas fa-user-plus"></i> Registrar alumno</a>
      <a class="navbar-brand" href="#"><i class="fas fa-home"></i> Home</a>
-       <a class="navbar-brand" href="#">Salir  <i class="fas fa-sign-out-alt"></i> </a>
+       <a class="navbar-brand" @click="inicioSesion">Salir  <i class="fas fa-sign-out-alt"></i> </a>
   
  
 </nav>
@@ -20,18 +20,13 @@
                 <div class="col-lg-12">
                     <div class="row">                      
                         <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                            <select class="form-control search-slt" id="exampleFormControlSelect1">
+                            <select class="form-control search-slt" id="combo"  @change="mostrarSeleccionado">
                               <option disabled="disabled" selected="selected">Selecciona la carrera</option>
-                              <option>Ingenieria en  Desarrollo de Software</option>
-                              <option>Ingenieria en Petrolera </option>
-                              <option>Ingenieria en Manofactura</option>
-                              <option>Ingenieria Biomedica</option>
-                              <option>Ingenieria Mecatronica</option>
-                              <option>Ingenieria Agroindustrial</option>
+                              <option  v-for="carrera in carreras" v-bind:key="carrera" v-bind:value="carrera.id">{{carrera.nombre}}</option>
                             </select>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                            <button type="button" class="btn btn-danger wrn-btn">Search</button>
+                            <button type="button" class="btn btn-danger wrn-btn" @click="searchCarrera">Buscar</button>
                         </div>
                     </div>
                 </div>
@@ -44,10 +39,10 @@
                 <div class="col-lg-12">
                     <div class="row">                      
                         <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                          <input type="text" class="form-control search-slt" placeholder="Edad" v-model="edad">
+                          <input type="text" class="form-control search-slt" placeholder="Edad" id="edad" v-model="edad">
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                            <button type="button" class="btn btn-danger wrn-btn" @click="searchEdad">Search</button>
+                            <button type="button" class="btn btn-danger wrn-btn" @click="searchEdad">Buscar</button>
                         </div>
                     </div>
                 </div>
@@ -60,10 +55,10 @@
                 <div class="col-lg-12">
                     <div class="row">                      
                         <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                          <input type="text" class="form-control search-slt" placeholder="Nombre del alumno " v-model="nombre">
+                          <input type="text" class="form-control search-slt" placeholder="Nombre del alumno " id="nombre" v-model="nombre">
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                            <button type="button" class="btn btn-danger wrn-btn" @click="searchNombre">Search</button>
+                            <button type="button" class="btn btn-danger wrn-btn" @click="searchNombre">Buscar</button>
                         </div>
                     </div>
                 </div>
@@ -119,15 +114,23 @@ export default {
               // eslint-disable-next-line no-console
             console.log(this.alumnos)
           })
+                API.get('http://isuri.ddns.net/adminUp/v1/carreras/carreras/',header) .then(response => {
+            // eslint-disable-next-line no-console
+           // console.log(response)
+            this.carreras = response.data
+              // eslint-disable-next-line no-console
+            console.log(this.carreras)
+          })      
           
  },
 
     data() {
         return{
            alumnos:[],
-           alumnos2:[],
+           carreras:[],
            nombre:'',
-           edad:''
+           edad:'',
+           carrera:''
         }
     },
      methods: {
@@ -172,14 +175,61 @@ API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
         searchNombre(){
          this.alumnos=this.alumnos.filter((alumno) => alumno.nombre.includes(this.nombre));
            // eslint-disable-next-line no-console
-       console.log(this.alumnos)
+        console.log(this.alumnos)
+        if(this.nombre==""){
+        API.get('http://backaws.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
+        this.alumnos = response.data
+        console.log(this.alumnos)
+          })
+
+        }
+
+
           },
         searchEdad(){
            this.alumnos=this.alumnos.filter((alumno) => alumno.edad.includes(this.edad));
            // eslint-disable-next-line no-console
        console.log(this.alumnos)
 
-        }                
+        },
+        
+      searchCarrera(){
+       this.alumnos=this.alumnos.filter((alumno) => alumno.carrera.includes(this.carrera));
+        },
+      mostrarSeleccionado(){
+              var combo = document.getElementById("combo");
+        var selectedOption = combo.options[combo.selectedIndex];
+        // eslint-disable-next-line no-console
+    console.log(selectedOption.text);
+            // eslint-disable-next-line no-console
+        console.log(combo);
+        this.carrera =selectedOption.text
+        },
+        inicioSesion(){
+             this.$router.push("/")
+        },
+        registroCarrera(){
+          this.$router.push("/carrera")
+        },
+        listaAlumnos(){
+          this.$router.push("/lista")
+        },
+        registroAlumno(){
+          this.$router.push("/registro")
+        },
+        refrescar(){
+            API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
+            // eslint-disable-next-line no-console
+           // console.log(response)
+            this.alumnos = response.data
+              // eslint-disable-next-line no-console
+            console.log(this.alumnos)
+          })
+        }   
+
+
+
+      
 
     }
 }

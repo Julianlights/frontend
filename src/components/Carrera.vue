@@ -3,11 +3,11 @@
       <nav class="navbar navbar-dark bg-dark">
 
   <a class="navbar-brand" href="#"><i class="fas fa-dizzy"></i> BIENVENIDO</a>
-  <a class="navbar-brand" href="#"><i class="fas fa-list"></i> Lista de alumnos</a>
-   <a class="navbar-brand" href="#"><i class="fas fa-plus"></i> Agregar carrera</a>
-    <a class="navbar-brand" href="#"><i class="fas fa-user-plus"></i> Registrar alumno</a>
+  <a class="navbar-brand" @click="listaAlumnos"><i class="fas fa-list"></i> Lista de alumnos</a>
+   <a class="navbar-brand" @click="registroCarrera"><i class="fas fa-plus"></i> Agregar carrera</a>
+    <a class="navbar-brand" @click="registroAlumno"><i class="fas fa-user-plus"></i> Registrar alumno</a>
      <a class="navbar-brand" href="#"><i class="fas fa-home"></i> Home</a>
-       <a class="navbar-brand" href="#">Salir  <i class="fas fa-sign-out-alt"></i> </a>
+       <a class="navbar-brand" @click="inicioSesion">Salir  <i class="fas fa-sign-out-alt"></i> </a>
   
  
 </nav>
@@ -78,7 +78,19 @@ export default {
           })
          
      
-       }
+       },
+       inicioSesion(){
+             this.$router.push("/")
+        },
+        registroCarrera(){
+          this.$router.push("/carrera")
+        },
+        listaAlumnos(){
+          this.$router.push("/lista")
+        },
+        registroAlumno(){
+          this.$router.push("/registro")
+        }
     }
 }
 
