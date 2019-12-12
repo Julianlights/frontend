@@ -188,7 +188,7 @@ API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
         searchEdad(){   
        this.alumnos=this.alumnos.filter((alumno) => alumno.edad.includes(this.edad));
         if(this.edad==""){
-           API.get('http://backaws.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
+           API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
             // eslint-disable-next-line no-console
            // console.log(response)
             this.alumnos = response.data
@@ -196,6 +196,7 @@ API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
             console.log(this.alumnos)
           })
         }
+        alert('No se encuentra la edad')
   
         },
         searchCarrera(){
