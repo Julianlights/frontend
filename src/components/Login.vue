@@ -79,7 +79,7 @@ export default {
 
 
 body{
-   background: url("assets/img/mountain.jpg") no-repeat center center fixed;
+   background: url("../assets/img/mountain.jpg") no-repeat center center fixed;
    background-size: cover;
 }
 
