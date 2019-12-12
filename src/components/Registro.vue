@@ -58,7 +58,7 @@
            
           </div>
                 <div class="form-group">
-                  <select name="Elige la carrera " class="" id="combo" @change="mostrarSeleccionado" >
+    <select name="Elige la carrera " class="" id="combo" @change="mostrarSeleccionado" >
       
       <option disabled="disabled" selected="selected" style="font-family: cursive">Selecciona tu carrera</option>
 

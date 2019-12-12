@@ -185,7 +185,7 @@ API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
         }
           },
         searchEdad(){   
-                  this.alumnos=this.alumnos.filter((alumno) => alumno.nombre.includes(this.nombre));
+                  this.alumnos=this.alumnos.filter((alumno) => alumno.edad.includes(this.edad));
            // eslint-disable-next-line no-console
        console.log(this.alumnos)
   
