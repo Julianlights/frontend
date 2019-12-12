@@ -105,20 +105,14 @@ const header ={headers:{Authorization:`Token ${localStorage.getItem('token')}`}}
 
 export default {
   created() {
-          // eslint-disable-next-line no-console
       console.log(header)
-     API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
-            // eslint-disable-next-line no-console
-           // console.log(response)
-            this.alumnos = response.data
-              // eslint-disable-next-line no-console
+     API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {    
+            this.alumnos = response.data            
             console.log(this.alumnos)
           })
-                API.get('http://isuri.ddns.net/adminUp/v1/carreras/carreras/',header) .then(response => {
-            // eslint-disable-next-line no-console
-           // console.log(response)
+                API.get('http://isuri.ddns.net/adminUp/v1/carreras/carreras/',header) .then(response => {       
             this.carreras = response.data
-              // eslint-disable-next-line no-console
+          
             console.log(this.carreras)
           })      
           
@@ -136,15 +130,13 @@ export default {
      methods: {
        obtenerAlumnos(){
 API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
-            // eslint-disable-next-line no-console
-           // console.log(response)
             this.alumnos = response.data
-              // eslint-disable-next-line no-console
+              
             console.log(this.alumnos)
           })
        },
        actualizar(alumno){
-            // eslint-disable-next-line no-console
+           
          console.log('ALUMNO ID: ' + alumno.nombre)
          localStorage.setItem('id', alumno.id)
          localStorage.setItem('nombre', alumno.nombre)
@@ -155,40 +147,37 @@ API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
          this.$router.push("/editar")
        },
        eliminar(id){
-          // eslint-disable-next-line no-console 
+    
          console.log('ALUMNO ID: ' + id)
 
           API.delete('http://isuri.ddns.net/adminUp/v1/alumnos/'+ id ,
       
         header
-      ).then(response => {
-            // eslint-disable-next-line no-console
+                  ).then(response => {
+           
             console.log(response.data);
             
-            // eslint-disable-next-line no-console
+            
             console.log(response)
             alert('Se ha eliminado con exito')
             this.obtenerAlumnos()
             
-          })
+                        })  
        },
-        searchNombre(){
+        searchNombre()      {
          this.alumnos=this.alumnos.filter((alumno) => alumno.nombre.includes(this.nombre));
-           // eslint-disable-next-line no-console
         console.log(this.alumnos)
         if(this.nombre==""){
-        API.get('http://backaws.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
+        API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
         this.alumnos = response.data
         console.log(this.alumnos)
-          })
+                                                                                })      
 
-        }
-
-
-          },
+                          }
+                           },
         searchEdad(){
            this.alumnos=this.alumnos.filter((alumno) => alumno.edad.includes(this.edad));
-           // eslint-disable-next-line no-console
+   
        console.log(this.alumnos)
 
         },
@@ -199,9 +188,9 @@ API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
       mostrarSeleccionado(){
               var combo = document.getElementById("combo");
         var selectedOption = combo.options[combo.selectedIndex];
-        // eslint-disable-next-line no-console
-    console.log(selectedOption.text);
-            // eslint-disable-next-line no-console
+       
+         console.log(selectedOption.text);
+     
         console.log(combo);
         this.carrera =selectedOption.text
         },
@@ -219,10 +208,7 @@ API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
         },
         refrescar(){
             API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
-            // eslint-disable-next-line no-console
-           // console.log(response)
             this.alumnos = response.data
-              // eslint-disable-next-line no-console
             console.log(this.alumnos)
           })
         }   
