@@ -102,22 +102,26 @@
 <script>
  import {API} from '../Servicios/axios.js'
 const header ={headers:{Authorization:`Token ${localStorage.getItem('token')}`}}
-
 export default {
   created() {
+          // eslint-disable-next-line no-console
       console.log(header)
-     API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {    
-            this.alumnos = response.data            
+     API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
+            // eslint-disable-next-line no-console
+           // console.log(response)
+            this.alumnos = response.data
+              // eslint-disable-next-line no-console
             console.log(this.alumnos)
           })
-                API.get('http://isuri.ddns.net/adminUp/v1/carreras/carreras/',header) .then(response => {       
+            API.get('http://isuri.ddns.net/adminUp/v1/carreras/carreras/',header) .then(response => {
+            // eslint-disable-next-line no-console
+           // console.log(response)
             this.carreras = response.data
-          
+              // eslint-disable-next-line no-console
             console.log(this.carreras)
-          })      
+          })
           
  },
-
     data() {
         return{
            alumnos:[],
@@ -130,13 +134,15 @@ export default {
      methods: {
        obtenerAlumnos(){
 API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
+            // eslint-disable-next-line no-console
+           // console.log(response)
             this.alumnos = response.data
-              
+              // eslint-disable-next-line no-console
             console.log(this.alumnos)
           })
        },
        actualizar(alumno){
-           
+            // eslint-disable-next-line no-console
          console.log('ALUMNO ID: ' + alumno.nombre)
          localStorage.setItem('id', alumno.id)
          localStorage.setItem('nombre', alumno.nombre)
@@ -147,50 +153,59 @@ API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
          this.$router.push("/editar")
        },
        eliminar(id){
-    
+          // eslint-disable-next-line no-console 
          console.log('ALUMNO ID: ' + id)
-
           API.delete('http://isuri.ddns.net/adminUp/v1/alumnos/'+ id ,
       
         header
-                  ).then(response => {
-           
+      ).then(response => {
+            // eslint-disable-next-line no-console
             console.log(response.data);
             
-            
+            // eslint-disable-next-line no-console
             console.log(response)
             alert('Se ha eliminado con exito')
             this.obtenerAlumnos()
             
-                        })  
+          })
        },
-        searchNombre()      {
+        searchNombre(){
          this.alumnos=this.alumnos.filter((alumno) => alumno.nombre.includes(this.nombre));
-        console.log(this.alumnos)
-        if(this.nombre==""){
-        API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
-        this.alumnos = response.data
-        console.log(this.alumnos)
-                                                                                })      
-
-                          }
-                           },
-        searchEdad(){
-           this.alumnos=this.alumnos.filter((alumno) => alumno.edad.includes(this.edad));
-   
+           // eslint-disable-next-line no-console
        console.log(this.alumnos)
-
+         
+        if(this.nombre==""){
+           API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
+            // eslint-disable-next-line no-console
+           // console.log(response)
+            this.alumnos = response.data
+              // eslint-disable-next-line no-console
+            console.log(this.alumnos)
+          })
+        }
+          },
+        searchEdad(){   
+       this.alumnos=this.alumnos.filter((alumno) => alumno.edad.includes(this.edad));
+        if(this.edad==""){
+           API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
+            // eslint-disable-next-line no-console
+           // console.log(response)
+            this.alumnos = response.data
+              // eslint-disable-next-line no-console
+            console.log(this.alumnos)
+          })
+        }
+  
         },
-        
-      searchCarrera(){
+        searchCarrera(){
        this.alumnos=this.alumnos.filter((alumno) => alumno.carrera.includes(this.carrera));
         },
-      mostrarSeleccionado(){
-              var combo = document.getElementById("combo");
+        mostrarSeleccionado(){
+        var combo = document.getElementById("combo");
         var selectedOption = combo.options[combo.selectedIndex];
-       
-         console.log(selectedOption.text);
-     
+        // eslint-disable-next-line no-console
+    console.log(selectedOption.text);
+            // eslint-disable-next-line no-console
         console.log(combo);
         this.carrera =selectedOption.text
         },
@@ -207,22 +222,18 @@ API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
           this.$router.push("/registro")
         },
         refrescar(){
-            API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
+  API.get('http://isuri.ddns.net/adminUp/v1/alumnos/',header) .then(response => {
+            // eslint-disable-next-line no-console
+           // console.log(response)
             this.alumnos = response.data
+              // eslint-disable-next-line no-console
             console.log(this.alumnos)
           })
-        }   
-
-
-
-      
-
+        }                
     }
 }
-
-
 </script>
-<style scoped>
+<style>
 .container{
   margin: 20px auto;
   max-width: 960px;
